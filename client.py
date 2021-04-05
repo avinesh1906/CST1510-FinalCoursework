@@ -108,7 +108,7 @@ class App(Tk):
         self.switchFrame(Welcome)
         # prevent the user from closing the window directly
         self.protocol("WM_DELETE_WINDOW", self.on_closing)
-
+        self.resizable(0, 0)
     # function to switch Frame
     def switchFrame(self, class_Frame):
         newFrame = class_Frame(self)
@@ -158,20 +158,20 @@ class Welcome(Frame):
         details_Frame.place(x=100, y=25)
 
         # Welcome Message
-        Label(details_Frame, text="WELCOME To", font=("Courier", 50), bg="PeachPuff2").place(x=140, y=50)
-        Label(details_Frame, text=" ケシャフ ", font=("Courier", 44), bg="PeachPuff2").place(x=190, y=150)
-        Label(details_Frame, text="Sushi", font=("Courier", 44), bg="PeachPuff2").place(x=250, y=225)
+        Label(details_Frame, text="WELCOME To", font=("Courier", 50), bg="PeachPuff2",).place(x=150, y=50)
+        Label(details_Frame, text=" ケシャフ ", font=("Courier", 44), bg="PeachPuff2",).place(x=190, y=150)
+        Label(details_Frame, text="Sushi", font=("Courier", 44), bg="PeachPuff2",).place(x=250, y=225)
 
         '''Display the logo'''
         logo = Image.open("pictures/logo(3).png")
         logoTk = ImageTk.PhotoImage(logo)
         picture_Label = Label(details_Frame, image=logoTk, )
         picture_Label.image = logoTk
-        picture_Label.place(x=190, y=410)
+        picture_Label.place(x=180, y=410)
 
         # Button to proceed to the main menu
-        Button(details_Frame, text="Place Order", font=("Courier", 30), bg="NavajoWhite4",
-               command=lambda: master.switchFrame(Menu)).place(x=190, y=315)
+        Button(details_Frame, text="Order Now!", font=("Courier", 20), bg="NavajoWhite4",
+               command=lambda: master.switchFrame(Menu)).place(x=245, y=315)
 
 
 class Menu(Frame):
@@ -492,26 +492,15 @@ class ProductDetails(Frame):
         details_Frame = Frame(window_Frame, width=700, height=500, highlightthickness="5", bg="PeachPuff2")
         details_Frame.place(x=100, y=100)
 
-        '''Display the logo'''
-        logo = Image.open("pictures/logo.png")
-        logoTk = ImageTk.PhotoImage(logo)
-        picture_Label = Label(details_Frame, image=logoTk, )
-        picture_Label.image = logoTk
-        picture_Label.place(x=425, y=200)
-
         '''Frame to display the product ID'''
-        Label(details_Frame, text="Product", font=("Courier", 20), foreground="DarkGoldenrod4",
-              bg="PeachPuff2").place(x=30, y=10)
-        Label(details_Frame, text=" ID ", font=("Courier", 18), foreground="DarkGoldenrod4",
-              bg="PeachPuff2").place(x=50, y=47)
+        Label(details_Frame, text="Product", font=("Courier", 20), bg="PeachPuff2").place(x=30, y=10)
+        Label(details_Frame, text=" ID ", font=("Courier", 18), bg="PeachPuff2").place(x=50, y=47)
         Label(details_Frame, text=IndividualID, font=("Courier", 27), foreground="DarkGoldenrod4",
               bg="PeachPuff2").place(x=250, y=10)
 
         '''Frame to display the product name'''
-        Label(details_Frame, text="Product", font=("Courier", 20), foreground="DarkGoldenrod4",
-              bg="PeachPuff2").place(x=30, y=100)
-        Label(details_Frame, text=" Name ", font=("Courier", 18), foreground="DarkGoldenrod4",
-              bg="PeachPuff2").place(x=50, y=137)
+        Label(details_Frame, text="Product", font=("Courier", 20), bg="PeachPuff2").place(x=30, y=100)
+        Label(details_Frame, text=" Name ", font=("Courier", 18), bg="PeachPuff2").place(x=50, y=137)
         if len(productName) >= 15:
             shorten_Text = productName[0:15] + "..."
             Label(details_Frame, text=shorten_Text, font=("Courier", 30), foreground="DarkGoldenrod4",
@@ -521,21 +510,19 @@ class ProductDetails(Frame):
                   bg="PeachPuff2").place(x=250, y=100)
 
         '''Frame to display the price per product'''
-        Label(details_Frame, text="Individual", font=("Courier", 20), foreground="DarkGoldenrod4",
-              bg="PeachPuff2").place(x=12, y=200)
-        Label(details_Frame, text=" Price ", font=("Courier", 18), foreground="DarkGoldenrod4",
-              bg="PeachPuff2").place(x=50, y=237)
+        Label(details_Frame, text="Individual", font=("Courier", 20), bg="PeachPuff2").place(x=12, y=200)
+        Label(details_Frame, text=" Price ", font=("Courier", 18), bg="PeachPuff2").place(x=50, y=237)
         Label(details_Frame, text=f'Rs {IndividualPrice}', font=("Courier", 30), foreground="DarkGoldenrod4",
               bg="PeachPuff2").place(x=250, y=200)
 
         '''Frame to display the total price of that product'''
-        Label(details_Frame, text="Total Price", font=("Courier", 20), foreground="DarkGoldenrod4",
-              bg="PeachPuff2").place(x=10, y=300)
-        Label(details_Frame, text="Per Product", font=("Courier", 18), foreground="DarkGoldenrod4",
-              bg="PeachPuff2").place(x=30, y=337)
+        Label(details_Frame, text="Total Price", font=("Courier", 20), bg="PeachPuff2").place(x=10, y=300)
+        Label(details_Frame, text="Per Product", font=("Courier", 18), bg="PeachPuff2").place(x=30, y=337)
         TotalPricePerProduct = int(IndividualPrice) * int(purchase_qty)  # calculate the total cost per product
         Label(details_Frame, text=f'Rs {TotalPricePerProduct}', font=("Courier", 30), foreground="DarkGoldenrod4",
               bg="PeachPuff2").place(x=250, y=300)
+        Label(details_Frame, text=f'({IndividualPrice}*{purchase_qty})', font=("Courier", 18),
+              foreground="DarkGoldenrod4", bg="PeachPuff2").place(x=269, y=340)
 
         ''' Frame to proceed or cancel or to add new. '''
         Button(details_Frame, text="ADD ANOTHER", bg="RoyalBlue2", font=("Courier", 20), foreground="thistle2",
@@ -544,6 +531,13 @@ class ProductDetails(Frame):
                command=lambda: master.switchFrame(Receipt)).place(x=250, y=400)
         Button(details_Frame, text="CANCEL", font=("Courier", 20), bg="OrangeRed3", command=Cancel,
                foreground="thistle2").place(x=550, y=400)
+
+        '''Display the logo'''
+        logo = Image.open("pictures/logo.png")
+        logoTk = ImageTk.PhotoImage(logo)
+        picture_Label = Label(details_Frame, image=logoTk, )
+        picture_Label.image = logoTk
+        picture_Label.place(x=425, y=160)
 
 
 class Receipt(Frame):
@@ -599,11 +593,15 @@ class Receipt(Frame):
         Label(details_Frame, text=" Price ", font=("Courier", 18), foreground="DarkGoldenrod4",
               bg="PeachPuff2").place(x=260, y=120)
 
+        '''Frame to display the quatity of that product'''
+        Label(details_Frame, text="Qty", font=("Courier", 20), foreground="DarkGoldenrod4",
+              bg="PeachPuff2").place(x=415, y=85)
+
         '''Frame to display the total price of that product'''
         Label(details_Frame, text="Total Price", font=("Courier", 20), foreground="DarkGoldenrod4",
-              bg="PeachPuff2").place(x=450, y=85)
+              bg="PeachPuff2").place(x=490, y=85)
         Label(details_Frame, text="Per Product", font=("Courier", 18), foreground="DarkGoldenrod4",
-              bg="PeachPuff2").place(x=465, y=120)
+              bg="PeachPuff2").place(x=505, y=120)
 
         ''' Display the order details'''
         # open the order.csv in read mode
@@ -612,34 +610,34 @@ class Receipt(Frame):
             order_content = csv.reader(order_readfile)
             order_list = list(order_content)
 
-            yAxis = 150  # starting yAxis
+            yAxis = 153  # starting yAxis
             TotalPrice = 0  # total price of the whole order
             for row in order_list:
                 # display the whole order details
                 if len(row[0]) >= 15:
                     shorten_Text = row[0][0:12] + "..."
-                    Label(details_Frame, text=shorten_Text, font=("Courier", 18), foreground="DarkGoldenrod4",
-                          bg="PeachPuff2").place(x=35, y=yAxis)
+                    Label(details_Frame, text=shorten_Text, font=("Courier", 18), bg="PeachPuff2").place(x=35, y=yAxis)
                 else:
-                    Label(details_Frame, text=row[0], font=("Courier", 18), foreground="DarkGoldenrod4",
-                          bg="PeachPuff2").place(x=35, y=yAxis)
-                Label(details_Frame, text=row[2], font=("Courier", 18), foreground="DarkGoldenrod4",
-                      bg="PeachPuff2").place(x=280, y=yAxis)
+                    Label(details_Frame, text=row[0], font=("Courier", 18), bg="PeachPuff2").place(x=35, y=yAxis)
+                Label(details_Frame, text=row[2], font=("Courier", 18), bg="PeachPuff2").place(x=282, y=yAxis)
+                Label(details_Frame, text=row[1], font=("Courier", 18), bg="PeachPuff2").place(x=435, y=yAxis)
                 TotalPricePerProduct = int(row[2]) * int(row[1])
                 TotalPrice += TotalPricePerProduct  # calculate the total price of the order
-                Label(details_Frame, text=TotalPricePerProduct, font=("Courier", 18), foreground="DarkGoldenrod4",
-                      bg="PeachPuff2").place(x=510, y=yAxis)
+                Label(details_Frame, text=TotalPricePerProduct, font=("Courier", 18), bg="PeachPuff2").place(x=550,
+                                                                                                             y=yAxis)
                 yAxis += 40
             Label(self, text="-----------", font="Courier", foreground="DarkGoldenrod4",
-                  bg="PeachPuff2").place(x=570, y=528)
-            Label(self, text=f"Total Price: Rs {TotalPrice}", font=("Courier", 20), foreground="DarkGoldenrod4",
-                  bg="PeachPuff2").place(x=360, y=550)
+                  bg="PeachPuff2").place(x=625, y=528)
+            Label(self, text=f"Total Price: Rs {TotalPrice}", font=("Courier", 20), bg="PeachPuff2").place(x=420, y=550)
             Label(self, text="-----------", font="Courier", foreground="DarkGoldenrod4",
-                  bg="PeachPuff2").place(x=570, y=578)
+                  bg="PeachPuff2").place(x=625, y=578)
 
+            '''Button for user to go back '''
+            Button(details_Frame, text="Back", font=("Courier", 20), bg="RoyalBlue2", width=10,
+                   command=lambda: master.switchFrame(ProductDetails), foreground="thistle2").place(x=130, y=580)
             ''' Button for user to proceed to payment method '''
-            Button(details_Frame, text="Payment Method", font=("Courier", 20), bg="OrangeRed3",
-                   command=lambda: master.switchFrame(Payment), foreground="thistle2").place(x=225, y=580)
+            Button(details_Frame, text="Payment", font=("Courier", 20), bg="dark green", width=10,
+                   command=lambda: master.switchFrame(Payment), foreground="thistle2").place(x=370, y=580)
 
 
 class Payment(Frame):
@@ -674,6 +672,14 @@ class Payment(Frame):
             """
             global amount
             amount = 0
+
+            # Button to choose cash
+            Button(Payment_Method, text="CASH", font=("Courier", 20), bg="AntiqueWhite4",
+                   command=CASH, foreground="thistle2").place(x=150, y=20)
+            # Button to choose card
+            Button(Payment_Method, text="CARD", font=("Courier", 20), bg="AntiqueWhite4",
+                   command=CARD, foreground="thistle2").place(x=450, y=20)
+
             # clear all widget in that specific frame
             for widgets in Payment_Details.winfo_children():
                 widgets.destroy()
@@ -769,6 +775,13 @@ class Payment(Frame):
                    width=13, command=lambda: confirmed()).place(x=325, y=245)
 
         def CARD():
+            Finish_Button["state"] = "disable"
+            # Button to choose cash
+            Button(Payment_Method, text="CASH", font=("Courier", 20), bg="AntiqueWhite4",
+                   command=CASH, foreground="thistle2").place(x=150, y=20)
+            # Button to choose card
+            Button(Payment_Method, text="CARD", font=("Courier", 20), bg="AntiqueWhite4",
+                   command=CARD, foreground="thistle2").place(x=450, y=20)
             """
             This function will prompt the user for the following details:
             1) Name
@@ -777,30 +790,47 @@ class Payment(Frame):
             4) Valid Thru
             :return: nothing
             """
+            def validate():
+                if len(name.get()) == 0 or len(account_number.get()) == 0 or len(cvv.get()) == 0 or \
+                        len(month.get()) == 0 or len(year.get()) == 0:
+                    Finish_Button["state"] = 'disabled'
+                else:
+                    Finish_Button["state"] = 'normal'
             # clear all widget in that specific frame
             for widgets in Payment_Details.winfo_children():
                 widgets.destroy()
-            Finish_Button["state"] = "normal"
             ''' Label and entry for user to enter bank details '''
             Label(Payment_Details, text="Name ", font=("Courier", 25), foreground="DarkGoldenrod4",
                   bg="PeachPuff2").place(x=70, y=50, height=25)
-            Entry(Payment_Details, width=30, bg="PeachPuff2", font=("Courier", 15)).place(x=220, y=50, height=25)
+            name = Entry(Payment_Details, width=25, bg="AntiqueWhite3", font=("Courier", 15))
+            name.place(x=220, y=50, height=25)
 
             Label(Payment_Details, text="Account ", font=("Courier", 25), foreground="DarkGoldenrod4",
                   bg="PeachPuff2").place(x=50, y=115, height=25)
             Label(Payment_Details, text=" Number ", font=("Courier", 25), foreground="DarkGoldenrod4",
                   bg="PeachPuff2").place(x=40, y=143, height=25)
-            Entry(Payment_Details, width=30, bg="PeachPuff2", font=("Courier", 15)).place(x=220, y=129, height=25)
+            account_number = Entry(Payment_Details, width=20, bg="AntiqueWhite3", font=("Courier", 15))
+            account_number.place(x=220, y=129, height=25)
 
             Label(Payment_Details, text="CVV ", font=("Courier", 25), foreground="DarkGoldenrod4",
                   bg="PeachPuff2").place(x=70, y=208, height=25)
-            Entry(Payment_Details, width=30, bg="PeachPuff2", font=("Courier", 15)).place(x=220, y=208, height=25)
+            cvv = Entry(Payment_Details, width=3, bg="AntiqueWhite3", font=("Courier", 15))
+            cvv.place(x=220, y=208, height=25)
 
             Label(Payment_Details, text="VALID  ", font=("Courier", 25), foreground="DarkGoldenrod4",
                   bg="PeachPuff2").place(x=53, y=273, height=25)
             Label(Payment_Details, text=" THRU ", font=("Courier", 25), foreground="DarkGoldenrod4",
                   bg="PeachPuff2").place(x=43, y=301, height=25)
-            Entry(Payment_Details, width=30, bg="PeachPuff2", font=("Courier", 15)).place(x=220, y=287, height=25)
+            month = Entry(Payment_Details, width=2, bg="AntiqueWhite3", font=("Courier", 15))
+            month.place(x=220, y=287, height=25)
+            Label(Payment_Details, text='/', font=("Courier", 20, 'bold'), bg='PeachPuff2', fg='sienna4').place(
+                x=252, y=280)
+            year = Entry(Payment_Details, width=2, bg="AntiqueWhite3", font=("Courier", 15))
+            year.place(x=275, y=287, height=25)
+
+            # Button to validate correct entry
+            Button(Payment_Details, text="VALIDATE", font=("Courier", 20), bg="AntiqueWhite4", foreground="black",
+                   command=lambda: validate()).place(x=325, y=320)
 
         '''Frame to store all the widgets'''
         window_Frame = Frame(self, width=900, height=700, bg="NavajoWhite4")
@@ -814,17 +844,17 @@ class Payment(Frame):
         Payment_Details = Frame(window_Frame, width=650, height=525, highlightthickness="5", bg="PeachPuff2")
         Payment_Details.place(x=125, y=100)
 
-        # Button to choose cash
-        Button(Payment_Method, text="CASH", font=("Courier", 20), bg="AntiqueWhite4",
-               command=CASH, foreground="thistle2").place(x=150, y=20)
-        # Button to choose card
-        Button(Payment_Method, text="CARD", font=("Courier", 20), bg="AntiqueWhite4",
-               command=CARD, foreground="thistle2").place(x=450, y=20)
-
         #  Label to indicate the user to choose cash or bank
         Label(Payment_Details, text="Please Choose ", font=("Courier", 50), bg="PeachPuff2").place(x=50, y=50)
         Label(Payment_Details, text=" A Button ", font=("Courier", 50), bg="PeachPuff2").place(x=120, y=120)
-        Label(Payment_Details, text=" Above", font=("Courier", 50), bg="PeachPuff2").place(x=160, y=190)
+        Label(Payment_Details, text=" Below", font=("Courier", 50), bg="PeachPuff2").place(x=180, y=190)
+
+        # Button to choose cash
+        Button(Payment_Details, text="CASH", font=("Courier", 20), bg="AntiqueWhite4",
+               command=CASH, foreground="thistle2").place(x=130, y=290)
+        # Button to choose card
+        Button(Payment_Details, text="CARD", font=("Courier", 20), bg="AntiqueWhite4",
+               command=CARD, foreground="thistle2").place(x=430, y=290)
 
         # send order.csv as a list to server to update the database
         with open('files/order.csv', 'r') as order_file:
