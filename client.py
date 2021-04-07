@@ -289,19 +289,27 @@ class Menu(Frame):
                 return my_format
 
             # list to store the product name and quantity
-            product_Name = [name[1] for name in button_list]
+            product_Name = []
+            for name in button_list:
+                if len(name[1]) >= 15:
+                    shorten_Text = name[1][0:7]
+                    product_Name.append(shorten_Text)
+                else:
+                    product_Name.append(name[1])
+
             product_Qty = [int(quantity[3]) for quantity in button_list]
 
-            fig = Figure()  # create a figure object
+            fig = Figure(figsize=(8, 7), dpi=70)  # create a figure object
             fig.patch.set_facecolor('#f0cbab')
 
             ax = fig.add_subplot(111)  # add an Axes to the figure
-
-            ax.pie(product_Qty, radius=0.9, labels=product_Name, autopct=realValue_format(product_Qty), startangle=270,
-                   center=(1, 50))
-            ax.set_title('Availability of Sushi', fontdict={'fontsize': 15}, x=0.5, y=0.95)
+            ax.pie(product_Qty, radius=0.8, labels=product_Name, autopct=realValue_format(product_Qty), startangle=270)
+            ax.set_title('Sushi Stock Level', fontdict={'fontsize': 15}, x=0.5, y=0.95)
             chart1 = FigureCanvasTkAgg(fig, pieChart_Frame)
-            chart1.get_tk_widget().place(x=-150, y=-40)
+            chart1.get_tk_widget().place(x=-90, y=-50)
+
+
+
 
         def NEXT():
             """
