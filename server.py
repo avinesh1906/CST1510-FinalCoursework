@@ -3,6 +3,7 @@ import mysql.connector
 import socket
 import pickle
 from _thread import *
+from datetime import datetime
 
 HOST = '127.0.0.1'  # <-- insert the HOST of the database
 PORT = 3306  # <-- insert the PORT of the database
@@ -44,15 +45,22 @@ def connection_Thread(client_Socket):
             products_data = database.fetchall()
 
             database_list = [categories_data, food_data, platter_data, products_data]
-            # Send data to the client
+
+            '''Send data to the client'''
             # pickle will allow to send a list to the client
             server_message = pickle.dumps(database_list)
             client_Socket.send(server_message)
 
-            # receive the order.csv from the client
+            '''receive the order.csv from the client'''
             order_details = pickle.loads(client_Socket.recv(1024))
 
             for orders in order_details:
+
+                '''store each transaction in transaction.txt'''
+                with open('files/transaction.txt', 'a') as transaction_file:
+                    transaction_file.writelines(f"DATE OF PURCHASE: {datetime.date(datetime.now())} "
+                                                f"ITEM PURCHASED: {orders[0]} QUANTITY PURCHASED: {orders[1]}\n")
+
                 # check whether to extract from food or platters according to categoryID
                 if int(orders[3]) <= 29:
                     # sql to retrieve the qty from food table

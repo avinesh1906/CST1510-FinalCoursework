@@ -63,54 +63,54 @@ INSERT INTO Products (Name) VALUES ('Sweet Prawn');
 INSERT INTO Products (Name) VALUES ('Panko Salmon');
 INSERT INTO Products (Name) VALUES ('Avocado');
 
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (1,1,135,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (1,2,145,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (1,3,235,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (1,4,255,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (1,5,235,50);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (1,1,135,43);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (1,2,145,46);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (1,3,235,35);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (1,4,255,47);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (1,5,235,23);
 
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (2,6,135,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (2,7,135,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (2,3,155,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (2,4,165,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (2,5,155,50);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (2,6,135,15);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (2,7,135,23);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (2,3,155,56);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (2,4,165,30);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (2,5,155,26);
 
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (3,8,205,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (3,9,215,50);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (3,8,205,31);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (3,9,215,49);
 INSERT INTO food (categoriesID, productID, price, qty) VALUES (3,10,205,50);
 
 INSERT INTO food (categoriesID, productID, price, qty) VALUES (4,11,185,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (4,12,245,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (4,13,245,50);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (4,12,245,17);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (4,13,245,19);
 
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,3,145,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,4,155,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,5,145,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,14,265,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,15,155,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,16,165,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,17,145,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,18,155,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,19,165,50);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,3,145,36);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,4,155,42);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,5,145,47);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,14,265,23);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,15,155,17);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,16,165,18);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,17,145,5);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,18,155,4);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (5,19,165,13);
 
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (6,20,250,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (6,21,225,50);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (6,20,250,17);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (6,21,225,11);
 
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (7,22,275,50);
-INSERT INTO food (categoriesID, productID, price, qty) VALUES (7,23,295,50);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (7,22,275,45);
+INSERT INTO food (categoriesID, productID, price, qty) VALUES (7,23,295,47);
 
 INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (30,8,'3 pieces', 285,50);
-INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (31,8,'6 pieces', 525,50);
-INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (32,8,'9 pieces', 695,50);
+INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (31,8,'6 pieces', 525,30);
+INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (32,8,'9 pieces', 695,23);
 
-INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (33,9,'Fusion Crunch Platter', 745,50);
-INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (34,9,'Flower Power Platter', 455,50);
-INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (35,9,'Salmon Platter', 1175,50);
-INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (36,9,'Zen Platter', 755,50);
-INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (37,9,'Rising Sun Platter', 625,50);
-INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (38,9,'Bonsai Platter (Veg)', 455,50);
-INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (39,9,'Sushi for 1', 525,50);
-INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (40,9,'Sushi for 2', 945,50);
+INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (33,9,'Fusion Crunch Platter', 745,10);
+INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (34,9,'Flower Power Platter', 455,17);
+INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (35,9,'Salmon Platter', 1175,19);
+INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (36,9,'Zen Platter', 755,26);
+INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (37,9,'Rising Sun Platter', 625,25);
+INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (38,9,'Bonsai Platter (Veg)', 455,45);
+INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (39,9,'Sushi for 1', 525,35);
+INSERT INTO Platters (plattersID,categoriesID, platterName, price, qty) VALUES (40,9,'Sushi for 2', 945,46);
 
 
 

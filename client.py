@@ -701,7 +701,11 @@ class Payment(Frame):
                 """
                 global amount
                 amount = 0
+                # display the change
+                text = f"Rs 0"
+                Change_Label.config(text=text)
                 input_text.set(str(amount))
+                Finish_Button["state"] = "disable"
 
             # function to calculate the total amount of notes/coin clicked
             def button_click(item):
@@ -709,37 +713,25 @@ class Payment(Frame):
                 This function will do the following operations:
                 1) Calculate the total amount
                 2) Display it on the display
+                3) Calculate the change
+                4) check if the change is negative
+                5) If -ve, then display an error and also make the finish button disable
+                6) else, display the change and set the finish button to normal
                 :param item: string
                 :return: nothing
                 """
                 global amount
+                global change
                 amount += int(item)
                 input_text.set(str(amount))
-
-            # function to validate if correct amount of notes/coin inserted by the user
-            def confirmed():
-                """
-                This function will carry out the following operations:
-                1) Calculate the change
-                2) check if the change is negative
-                3) If -ve, then display an error and also make the finish button disable
-                4) else, display the change and set the finish button to normal
-                :return: nothing
-                """
-                # global variable to store the change and amount due
-                global change
-                global amount
                 # calculate the change
                 change = amount - TotalPrice
                 # check if there is lack of money inserted
                 if change < 0:
-                    # display an error message if yes
-                    messagebox.showerror("Error", f"Please enter a correct amount above Rs.{TotalPrice}")
-                    amount = 0  # reset amount to zero
                     Finish_Button["state"] = "disable"
                 else:
                     # display the change
-                    text = f"Your change: Rs {change}"
+                    text = f"Rs {change}"
                     Change_Label.config(text=text)
                     Finish_Button["state"] = "normal"
 
@@ -747,32 +739,44 @@ class Payment(Frame):
             input_text = StringVar()
             input_text.set(str(amount))  # display the amount
 
-            # generate the display bar
-            screen = Entry(Payment_Details, font=("Courier", 23), textvariable=input_text, bg="light grey", bd=12,
-                           width=27,
-                           justify=RIGHT)
-            screen.place(x=50, y=10)
-            Label(Payment_Details, text="Enter your cash ", font=("Courier", 15), foreground="DarkGoldenrod4",
+            Label(Payment_Details, text="Cash due:", font=("Courier", 25), foreground="DarkGoldenrod4",
+                  bg="PeachPuff2").place(x=75, y=10, height=25)
+
+            Label(Payment_Details, text=f'Rs {TotalPrice}', font=("Courier", 25),bg="PeachPuff2").place(x=347, y=10,
+                                                                                                        height=25)
+
+            Label(Payment_Details, text="Cash entered: ", font=("Courier", 25), foreground="DarkGoldenrod4",
                   bg="PeachPuff2").place(x=75, y=80, height=25)
+
+            Label(Payment_Details, text=f"Your change:", font=("Courier", 25), foreground="DarkGoldenrod4",
+                  bg="PeachPuff2").place(x=75, y=150)
+
+            Change_Label = Label(Payment_Details, text='Rs 0', font=("Courier", 25), bg="PeachPuff2")
+            Change_Label.place(x=347, y=150)
+
+            Label(Payment_Details, text="Enter your cash ", font=("Courier", 15), foreground="DarkGoldenrod4",
+                  bg="PeachPuff2").place(x=50, y=220, height=25)
+
+            # generate the display bar
+            screen = Entry(Payment_Details, font=("Courier", 23), textvariable=input_text, bg="light grey", bd=8,
+                           width=5,
+                           justify=CENTER)
+            screen.place(x=355, y=70)
+
             i = 0  # starting index for money_list
             # loop to display the money button in Payment_Details frame
-            for row in range(120, 200, 60):
+            for row in range(250, 330, 60):
                 for column in range(75, 575, 100):
                     Button(Payment_Details, text=money_list[i], font=("Courier", 20), bg="AntiqueWhite4", width=5,
                            foreground="black", command=lambda name=money_list[i]: button_click(name)).place(
                         x=column, y=row)
                     i += 1  # increment the index
 
-            Change_Label = Label(Payment_Details, text=f"Your change: Rs 0", font=("Courier", 25),
-                                 foreground="DarkGoldenrod4", bg="PeachPuff2")
-            Change_Label.place(x=75, y=300)
-
             # Button to clear everything on the display
-            Button(Payment_Details, text="CE", font=("Courier", 20), bg="OrangeRed3", foreground="thistle2", width=12,
-                   command=lambda: ce()).place(x=85, y=245)
-            # Button to validate correct entry
-            Button(Payment_Details, text="VALIDATE", font=("Courier", 20), bg="AntiqueWhite4", foreground="black",
-                   width=13, command=lambda: confirmed()).place(x=325, y=245)
+            Button(Payment_Details, text="UNDO", font=("Courier", 20), bg="OrangeRed3", foreground="thistle2", width=12,
+                   command=lambda: ce()).place(x=225, y=380)
+
+
 
         def CARD():
             Finish_Button["state"] = "disable"
@@ -830,7 +834,7 @@ class Payment(Frame):
 
             # Button to validate correct entry
             Button(Payment_Details, text="VALIDATE", font=("Courier", 20), bg="AntiqueWhite4", foreground="black",
-                   command=lambda: validate()).place(x=325, y=320)
+                   command=lambda: validate()).place(x=250, y=350)
 
         '''Frame to store all the widgets'''
         window_Frame = Frame(self, width=900, height=700, bg="NavajoWhite4")
