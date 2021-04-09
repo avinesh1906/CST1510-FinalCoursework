@@ -109,6 +109,7 @@ class App(Tk):
         # prevent the user from closing the window directly
         self.protocol("WM_DELETE_WINDOW", self.on_closing)
         self.resizable(0, 0)
+
     # function to switch Frame
     def switchFrame(self, class_Frame):
         newFrame = class_Frame(self)
@@ -158,9 +159,9 @@ class Welcome(Frame):
         details_Frame.place(x=100, y=25)
 
         # Welcome Message
-        Label(details_Frame, text="WELCOME To", font=("Courier", 50), bg="PeachPuff2",).place(x=150, y=50)
-        Label(details_Frame, text=" ケシャフ ", font=("Courier", 44), bg="PeachPuff2",).place(x=190, y=150)
-        Label(details_Frame, text="Sushi", font=("Courier", 44), bg="PeachPuff2",).place(x=250, y=225)
+        Label(details_Frame, text="WELCOME To", font=("Courier", 50), bg="PeachPuff2", ).place(x=150, y=50)
+        Label(details_Frame, text=" ケシャフ ", font=("Courier", 44), bg="PeachPuff2", ).place(x=190, y=150)
+        Label(details_Frame, text="Sushi", font=("Courier", 44), bg="PeachPuff2", ).place(x=250, y=225)
 
         '''Display the logo'''
         logo = Image.open("pictures/logo(3).png")
@@ -269,6 +270,11 @@ class Menu(Frame):
                                          command=lambda Product=Product_list: show_details(Product), width=20,
                                          height=2, font=("Courier", 11), bg="NavajoWhite4")
                 products_Button.place(x=10, y=yAxis)  # position to place the button
+                # disable button if stock level is zero
+                if Product_list[3] == '0':
+                    products_Button['state'] = 'disable'
+                else:
+                    products_Button['state'] = 'normal'
 
                 yAxis += 65  # increase the y-Axis according to number of item
 
@@ -307,9 +313,6 @@ class Menu(Frame):
             ax.set_title('Sushi Stock Level', fontdict={'fontsize': 15}, x=0.5, y=0.95)
             chart1 = FigureCanvasTkAgg(fig, pieChart_Frame)
             chart1.get_tk_widget().place(x=-90, y=-50)
-
-
-
 
         def NEXT():
             """
@@ -750,8 +753,8 @@ class Payment(Frame):
             Label(Payment_Details, text="Cash due:", font=("Courier", 25), foreground="DarkGoldenrod4",
                   bg="PeachPuff2").place(x=75, y=10, height=25)
 
-            Label(Payment_Details, text=f'Rs {TotalPrice}', font=("Courier", 25),bg="PeachPuff2").place(x=347, y=10,
-                                                                                                        height=25)
+            Label(Payment_Details, text=f'Rs {TotalPrice}', font=("Courier", 25), bg="PeachPuff2").place(x=347, y=10,
+                                                                                                         height=25)
 
             Label(Payment_Details, text="Cash entered: ", font=("Courier", 25), foreground="DarkGoldenrod4",
                   bg="PeachPuff2").place(x=75, y=80, height=25)
@@ -784,8 +787,6 @@ class Payment(Frame):
             Button(Payment_Details, text="UNDO", font=("Courier", 20), bg="OrangeRed3", foreground="thistle2", width=12,
                    command=lambda: ce()).place(x=225, y=380)
 
-
-
         def CARD():
             Finish_Button["state"] = "disable"
             # Button to choose cash
@@ -802,12 +803,14 @@ class Payment(Frame):
             4) Valid Thru
             :return: nothing
             """
+
             def validate():
                 if len(name.get()) == 0 or len(account_number.get()) == 0 or len(cvv.get()) == 0 or \
                         len(month.get()) == 0 or len(year.get()) == 0:
                     Finish_Button["state"] = 'disabled'
                 else:
                     Finish_Button["state"] = 'normal'
+
             # clear all widget in that specific frame
             for widgets in Payment_Details.winfo_children():
                 widgets.destroy()

@@ -58,8 +58,8 @@ def connection_Thread(client_Socket):
 
                 '''store each transaction in transaction.txt'''
                 with open('files/transaction.txt', 'a') as transaction_file:
-                    transaction_file.writelines(f"DATE OF PURCHASE: {datetime.date(datetime.now())} "
-                                                f"ITEM PURCHASED: {orders[0]} QUANTITY PURCHASED: {orders[1]}\n")
+                    transaction_file.writelines(f"{datetime.date(datetime.now())}\t{orders[3]}\t{orders[0]}\t\t"
+                                                f"{orders[1]}\n")
 
                 # check whether to extract from food or platters according to categoryID
                 if int(orders[3]) <= 29:
